@@ -44,7 +44,11 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 
     @Override
     public void delete(String cc) {
-
+        List<Paciente> pacientes = findAll();
+        pacientes = pacientes.stream()
+                .filter(p -> p.getCc() != cc)
+                .collect(Collectors.toList());
+        saveAll(pacientes);
     }
 
     private void saveAll(List<Paciente> pacientes) {
