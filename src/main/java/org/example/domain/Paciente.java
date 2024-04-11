@@ -78,12 +78,13 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return  "cc='" + cc + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", genero='" + genero + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", edad=" + edad ;
+        return  "🆔 ID: " + cc + '\n' +
+                "👤 Nombre: " + nombre + '\n' +
+                "👥 Apellido: " + apellido + '\n' +
+                "⚤ Género: " + genero + '\n' +
+                "🏠 Dirección: " + direccion + '\n' +
+                "📞 Teléfono: " + telefono + '\n' +
+                "🎂 Edad: " + edad ;
     }
+
 }

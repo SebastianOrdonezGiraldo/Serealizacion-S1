@@ -34,7 +34,7 @@ public class Main {
     public static void main(String[] args) {
         boolean salir = false;
         while (!salir) {
-            System.out.println("1. RegistrarPaciente");
+            System.out.println("1. Registrar paciente nuevo");
             System.out.println("2. Actualizar datos");
             System.out.println("3. registrar cita paciente existente");
             System.out.println("4. eliminar cita");
@@ -43,37 +43,35 @@ public class Main {
             System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
-                    registrarPaciente(); //listo
+                    registrarPaciente();
                     break;
                 case 2:
-                    //Actualizar datos
-                    actualizarPaciente(); //listo
+
+                    actualizarPaciente();
                     break;
                 case 3:
-                    //registrar cita paciente existente
-                    registrarCita(); //listo
+
+                    registrarCita();
                     break;
                 case 4:
-                    //eliminar cita
-                    eliminarCita(); //listo
+
+                    eliminarCita();
                     break;
                 case 5:
-                    listarPacientes(); //listo
-                    //mostrar pacientes
+                    listarPacientes();
+
                     break;
                 case 6:
-                    listarCitas(); //listo
-                    //Mostrar citas del paciente
+                    listarCitas();
                     break;
                 case 7:
                     salir = true;
                     break;
                 case 8:
-                    //mostrar todas las citas - opcion oculta
                     listarTodasCitas();
                     break;
                 default:
@@ -104,14 +102,14 @@ public class Main {
 
         try {
             pacienteService.save(pacientes);
-            System.out.println("Producto creado exitosamente.");
+            System.out.println("Paciente creado exitosamente.");
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
     private static void actualizarPaciente() {
-        System.out.print("Ingrese el cc del paciente a actualizar: ");
+        System.out.print("Ingrese el ID del paciente a actualizar: ");
         String cc = scanner.nextLine();
 
         Paciente pacientes = pacienteService.findByid(cc);
@@ -169,11 +167,11 @@ public class Main {
             System.out.println("No existe el usuario, debe estar registrado para crear la cita");
         } else {
             System.out.println("Ususario encontrado");
-            System.out.println("Imgrese Hora de la cita");
+            System.out.println("Ingrese la hora de la cita:");
             String hora = scanner.nextLine();
-            System.out.println("Imgrese la fecha de la cita");
+            System.out.println("Ingrese la fecha de la cita:");
             String fecha = scanner.nextLine();
-            System.out.println("Imgrese motivo de la cita");
+            System.out.println("Ingrese motivo de la cita:");
             String motivo = scanner.nextLine();
             citaService.save(new Cita(counter, paciente, hora, fecha, motivo));
             System.out.println("Registrado con exito");
@@ -195,17 +193,23 @@ public class Main {
     }
 
     private static void listarCitas() {
-
         List<Cita> citas = citaService.findAll();
         System.out.println("Identificacion del paciente: ");
         String cc = scanner.nextLine();
+        boolean tieneCitas = false;
 
         for (Cita cita : citas) {
             if (cita.getPaciente().getCc().equals(cc)) {
                 System.out.println(cita);
+                tieneCitas = true;
             }
         }
+
+        if (!tieneCitas) {
+            System.out.println("Este paciente no tiene citas registradas");
+        }
     }
+
 
     private static void listarPacientes() {
 

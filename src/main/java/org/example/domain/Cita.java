@@ -58,12 +58,12 @@ public class Cita implements Serializable{
 
     @Override
     public String toString() {
-        return "Cita{" +
-                "id=" + id +
-                ", hora='" + hora + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", motivo='" + motivo + '\'' +
-                ", paciente=" + paciente +
-                '}';
+        return "📝 Cita:" + '\n' +
+                "🆔 ID: " + id + '\n' +
+                "⏰ Hora: '" + hora + '\'' + '\n' +
+                "📅 Fecha: '" + fecha + '\'' + '\n' +
+                "❓ Motivo: '" + motivo + '\'' + '\n' +
+                "👤 Paciente: " + paciente + '\n';
     }
+
 }
